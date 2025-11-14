@@ -70,11 +70,6 @@ end program hello`,
 -export([start/0]).
 start() -> io:format("Hello, World!~n").`,
   clojure: '(println "Hello, World!")',
-  d: `import std.stdio;
-
-void main() {
-    writeln("Hello, World!");
-}`,
   sql: 'SELECT "Hello, World!";',
   assembly: `section .data
     msg db "Hello, World!", 0x0a
@@ -165,7 +160,6 @@ int main(int argc, char * argv[]) {
       fortran: "main.f90",
       erlang: "main.erl",
       clojure: "main.clj",
-      d: "main.d",
       sql: "main.sql",
       assembly: "main.asm",
       matlab: "main.m",
