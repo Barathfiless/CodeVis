@@ -384,7 +384,7 @@ disp(C);`,
             size="sm"
             title={isRunning ? "Stop Running" : "Run Code"}
           >
-            <Play className="h-4 w-4" />
+            <Play className="h-4 w-4 text-green-900" />
           </Button>
         </div>
         <div className="flex items-center gap-2">
