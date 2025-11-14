@@ -460,6 +460,15 @@ disp(C);`,
           </Button>
           <ThemeToggle />
           <Button
+            onClick={() => setShowNotes(!showNotes)}
+            variant="ghost"
+            size="sm"
+            className="gap-2 text-foreground hover:bg-muted/50"
+            title="Notes"
+          >
+            <FileText className="h-4 w-4" />
+          </Button>
+          <Button
             variant="ghost"
             size="sm"
             className="gap-2 text-foreground hover:bg-muted/50"
@@ -627,6 +636,29 @@ disp(C);`,
                     </div>
                   </div>
                 )}
+                {/* Notes Dropdown Box */}
+                {showNotes && (
+                  <div className="border-t border-border" style={{ height: '200px' }}>
+                    <div className="px-4 py-2 bg-muted border-b border-border flex items-center justify-between">
+                      <span className="text-xs font-medium text-foreground">Notes</span>
+                      <Button
+                        onClick={() => setShowNotes(false)}
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 w-6 p-0 hover:bg-muted/50"
+                        title="Close Notes"
+                      >
+                        ×
+                      </Button>
+                    </div>
+                    <textarea
+                      value={notes}
+                      onChange={(e) => setNotes(e.target.value)}
+                      placeholder="Write your notes here..."
+                      className="h-[calc(100%-32px)] w-full resize-none bg-card border-none p-4 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-none"
+                    />
+                  </div>
+                )}
               </div>
               
               {/* Resizable Divider */}
@@ -791,6 +823,29 @@ disp(C);`,
                     </Button>
                   </div>
                 </div>
+              </div>
+            )}
+            {/* Notes Dropdown Box */}
+            {showNotes && (
+              <div className="border-t border-border" style={{ height: '200px' }}>
+                <div className="px-4 py-2 bg-muted border-b border-border flex items-center justify-between">
+                  <span className="text-xs font-medium text-foreground">Notes</span>
+                  <Button
+                    onClick={() => setShowNotes(false)}
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 w-6 p-0 hover:bg-muted/50"
+                    title="Close Notes"
+                  >
+                    ×
+                  </Button>
+                </div>
+                <textarea
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  placeholder="Write your notes here..."
+                  className="h-[calc(100%-32px)] w-full resize-none bg-card border-none p-4 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-none"
+                />
               </div>
             )}
           </div>
