@@ -378,13 +378,19 @@ disp(C);`,
               isRunning
                 ? 'bg-red-500/20 hover:bg-red-500/40 rounded-md border-red-500/40 hover:border-red-500/60 shadow-md hover:shadow-lg dark:bg-red-500/20 dark:hover:bg-red-500/40 light:bg-red-500/40 light:hover:bg-red-500/60 light:border-red-500/60 light:hover:border-red-500/80 light:text-white'
                 : output
-                ? 'bg-emerald-500/20 hover:bg-emerald-500/30 rounded-lg border-emerald-500/40 hover:border-emerald-500/60 shadow-md hover:shadow-lg px-3 h-8 dark:bg-emerald-500/20 dark:hover:bg-emerald-500/30 light:bg-emerald-500/50 light:hover:bg-emerald-500/70 light:border-emerald-500/70 light:hover:border-emerald-500/90 light:text-white'
-                : 'bg-gray-500/20 hover:bg-gray-600/30 rounded-lg border-gray-500/40 hover:border-gray-600/60 shadow-md hover:shadow-lg px-3 h-8 dark:bg-gray-500/20 dark:hover:bg-gray-600/30 light:bg-gray-500/50 light:hover:bg-gray-600/70 light:border-gray-600/60 light:hover:border-gray-700/80 light:text-white'
+                ? 'bg-green-500 hover:bg-green-700 rounded-lg border-green-600 hover:border-green-800 shadow-md hover:shadow-lg px-3 h-8 dark:bg-green-500 dark:hover:bg-green-700 light:bg-green-500 light:hover:bg-green-700 light:border-green-600 light:hover:border-green-800 light:text-white'
+                : 'bg-green-500 hover:bg-green-700 rounded-lg border-green-600 hover:border-green-800 shadow-md hover:shadow-lg px-3 h-8 dark:bg-green-500 dark:hover:bg-green-700 light:bg-green-500 light:hover:bg-green-700 light:border-green-600 light:hover:border-green-800 light:text-white'
             }`}
             size="sm"
             title={isRunning ? "Stop Running" : "Run Code"}
           >
-            <Play className="h-3.5 w-3.5" />
+            {!isRunning && !output ? (
+              <span className="text-lg">|&gt;</span>
+            ) : isRunning ? (
+              <Play className="h-3.5 w-3.5" />
+            ) : (
+              <Play className="h-3.5 w-3.5" />
+            )}
           </Button>
         </div>
         <div className="flex items-center gap-2">
