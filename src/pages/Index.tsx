@@ -379,7 +379,7 @@ disp(C);`,
             className="p-0 hover:bg-transparent"
             title={isRunning ? "Stop Running" : "Run Code"}
           >
-            <Play className="h-5 w-5 text-green-700" />
+            <Play className="h-5 w-5 text-green-900" />
           </Button>
         </div>
         <div className="flex items-center gap-2">
