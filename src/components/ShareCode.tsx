@@ -67,11 +67,11 @@ export const ShareCode = ({ code, language }: ShareCodeProps) => {
       <Button
         variant="ghost"
         size="sm"
-        className="gap-1.5 h-8 w-8 p-0 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-500/30 hover:border-blue-500/50 transition-all duration-200 flex items-center justify-center"
+        className="gap-1.5 h-8 w-8 p-0 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-500/30 hover:border-blue-500/50 transition-all duration-200 flex items-center justify-center dark:from-blue-500/20 dark:to-purple-500/20 dark:border-blue-500/30 light:from-blue-500/40 light:to-purple-500/40 light:border-blue-500/50 light:hover:from-blue-500/60 light:hover:to-purple-500/60 light:hover:border-blue-600"
         onClick={() => setIsOpen(true)}
         title="Share code with friends"
       >
-        <Share2 className="h-4 w-4 text-blue-400" />
+        <Share2 className="h-4 w-4 text-blue-400 dark:text-blue-400 light:text-blue-600" />
       </Button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>

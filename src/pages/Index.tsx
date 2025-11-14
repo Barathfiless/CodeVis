@@ -374,12 +374,12 @@ disp(C);`,
           <Button
             onClick={runCode}
             disabled={isRunning || !code.trim()}
-            className={`gap-2 text-white font-medium transition-all duration-300 border ${
+            className={`gap-2 text-white font-medium transition-all duration-300 border dark:text-white ${
               isRunning
-                ? 'bg-red-500/20 hover:bg-red-500/40 rounded-md border-red-500/40 hover:border-red-500/60 shadow-md hover:shadow-lg'
+                ? 'bg-red-500/20 hover:bg-red-500/40 rounded-md border-red-500/40 hover:border-red-500/60 shadow-md hover:shadow-lg dark:bg-red-500/20 dark:hover:bg-red-500/40 light:bg-red-500/40 light:hover:bg-red-500/60 light:border-red-500/60 light:hover:border-red-500/80 light:text-white'
                 : output
-                ? 'bg-emerald-500/20 hover:bg-emerald-500/30 rounded-lg border-emerald-500/40 hover:border-emerald-500/60 shadow-md hover:shadow-lg px-3 h-8'
-                : 'bg-gray-500/20 hover:bg-gray-600/30 rounded-lg border-gray-500/40 hover:border-gray-600/60 shadow-md hover:shadow-lg px-3 h-8'
+                ? 'bg-emerald-500/20 hover:bg-emerald-500/30 rounded-lg border-emerald-500/40 hover:border-emerald-500/60 shadow-md hover:shadow-lg px-3 h-8 dark:bg-emerald-500/20 dark:hover:bg-emerald-500/30 light:bg-emerald-500/50 light:hover:bg-emerald-500/70 light:border-emerald-500/70 light:hover:border-emerald-500/90 light:text-white'
+                : 'bg-gray-500/20 hover:bg-gray-600/30 rounded-lg border-gray-500/40 hover:border-gray-600/60 shadow-md hover:shadow-lg px-3 h-8 dark:bg-gray-500/20 dark:hover:bg-gray-600/30 light:bg-gray-500/50 light:hover:bg-gray-600/70 light:border-gray-600/60 light:hover:border-gray-700/80 light:text-white'
             }`}
             size="sm"
             title={isRunning ? "Stop Running" : "Run Code"}
@@ -394,10 +394,10 @@ disp(C);`,
             onClick={() => setShowRandomQuestions(!showRandomQuestions)}
             variant="ghost"
             size="sm"
-            className="group gap-2 px-3 h-8 rounded-full bg-gradient-to-br from-green-500/20 to-emerald-500/20 hover:bg-green-500 hover:text-black border border-green-500/30 hover:border-green-500 transition-all duration-200 flex items-center justify-center text-green-300 hover:shadow-lg"
+            className="group gap-2 px-3 h-8 rounded-full bg-gradient-to-br from-green-500/20 to-emerald-500/20 hover:bg-green-500 hover:text-black border border-green-500/30 hover:border-green-500 transition-all duration-200 flex items-center justify-center text-green-300 hover:shadow-lg dark:from-green-500/20 dark:to-emerald-500/20 dark:text-green-300 dark:border-green-500/30 light:from-green-500/40 light:to-emerald-500/40 light:bg-gradient-to-br light:text-green-700 light:border-green-500/50 light:hover:bg-green-600 light:hover:text-white light:hover:border-green-600"
             title="Random Questions"
           >
-            <Shuffle className="h-4 w-4 text-green-400 group-hover:text-black" />
+            <Shuffle className="h-4 w-4 text-green-400 group-hover:text-black dark:text-green-400 light:text-green-600 light:group-hover:text-white" />
             <span className="text-xs font-medium">Random Questions</span>
           </Button>
           <ThemeToggle />

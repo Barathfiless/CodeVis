@@ -64,18 +64,18 @@ export const DailyPracticeCounter = () => {
   return (
     <div className="flex items-center gap-3">
       {/* Daily Solved Count */}
-      <div className="flex items-center gap-1.5 cursor-help" title={`Questions solved today (${new Date().toLocaleDateString('en-CA')})`}>
+      <div className="flex items-center gap-1.5 cursor-help dark:text-success light:text-emerald-600" title={`Questions solved today (${new Date().toLocaleDateString('en-CA')})`}>
         <div className="relative">
-          <Activity className="h-5 w-5 text-primary" />
-          <Zap className="h-3 w-3 text-success absolute -bottom-1 -right-1" />
+          <Activity className="h-5 w-5 dark:text-primary light:text-blue-600" />
+          <Zap className="h-3 w-3 dark:text-success light:text-emerald-600 absolute -bottom-1 -right-1" />
         </div>
-        <span className="text-sm font-bold text-success">{practiceCount}</span>
+        <span className="text-sm font-bold dark:text-success light:text-emerald-600">{practiceCount}</span>
       </div>
 
       {/* Streak Counter */}
-      <div className="flex items-center gap-1.5 cursor-help" title={`Consecutive days streak (Last updated: ${lastResetDate})`}>
-        <Flame className="h-5 w-5 text-white" />
-        <span className="text-sm font-bold text-white">{streak}</span>
+      <div className="flex items-center gap-1.5 cursor-help dark:text-white light:text-orange-600" title={`Consecutive days streak (Last updated: ${lastResetDate})`}>
+        <Flame className="h-5 w-5 dark:text-white light:text-orange-600" />
+        <span className="text-sm font-bold dark:text-white light:text-orange-600">{streak}</span>
       </div>
     </div>
   );
