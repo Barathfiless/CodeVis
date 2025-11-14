@@ -376,10 +376,10 @@ disp(C);`,
             disabled={isRunning || !code.trim()}
             variant="ghost"
             size="sm"
-            className="p-2 rounded-lg bg-green-700 hover:bg-green-800 transition-all duration-200"
+            className="p-0 hover:bg-transparent"
             title={isRunning ? "Stop Running" : "Run Code"}
           >
-            <Play className="h-5 w-5 text-white fill-white" />
+            <Play className="h-5 w-5 text-green-700" />
           </Button>
         </div>
         <div className="flex items-center gap-2">
