@@ -608,7 +608,7 @@ disp(C);`,
                       </Button>
                     </div>
                     <div className="flex flex-col items-center justify-center gap-4 p-4" style={{ height: 'calc(100% - 32px)' }}>
-                      <div className="text-4xl font-bold text-primary font-mono">{formatTime(timerSeconds)}</div>
+                      <div className="text-4xl font-bold text-primary font-mono">{timerSeconds > 0 ? formatTime(timerSeconds) : formatTime((parseInt(timerInput) || 5) * 60)}</div>
                       <div className="flex items-center gap-2">
                         {!isTimerRunning ? (
                           <>
@@ -801,7 +801,7 @@ disp(C);`,
                   </Button>
                 </div>
                 <div className="flex flex-col items-center justify-center gap-4 p-4" style={{ height: 'calc(100% - 32px)' }}>
-                  <div className="text-4xl font-bold text-primary font-mono">{formatTime(timerSeconds)}</div>
+                  <div className="text-4xl font-bold text-primary font-mono">{timerSeconds > 0 ? formatTime(timerSeconds) : formatTime((parseInt(timerInput) || 5) * 60)}</div>
                   <div className="flex items-center gap-2">
                     {!isTimerRunning ? (
                       <>
