@@ -385,7 +385,7 @@ disp(C);`,
             title={isRunning ? "Stop Running" : "Run Code"}
           >
             {!isRunning && !output ? (
-              <span className="text-lg">|&gt;</span>
+              <span className="text-lg text-green-700">|&gt;</span>
             ) : isRunning ? (
               <Play className="h-3.5 w-3.5" />
             ) : (
