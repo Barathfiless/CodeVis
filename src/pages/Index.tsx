@@ -552,15 +552,6 @@ disp(C);`,
                       <Clock className="h-4 w-4" />
                     </Button>
                     <Button
-                      onClick={() => setShowNotes(!showNotes)}
-                      variant="ghost"
-                      size="sm"
-                      className="h-8 w-8 p-0 hover:bg-muted/50"
-                      title="Notes"
-                    >
-                      <FileText className="h-4 w-4" />
-                    </Button>
-                    <Button
                       onClick={handleFullscreen}
                       variant="ghost"
                       size="sm"
@@ -574,29 +565,6 @@ disp(C);`,
                 <div className="flex-1 overflow-hidden">
                   <CodeEditor value={code} onChange={handleCodeChange} language={language} />
                 </div>
-                {/* Notes Panel */}
-                {showNotes && (
-                  <div className="border-t border-border" style={{ height: '200px' }}>
-                    <div className="px-4 py-2 bg-muted border-b border-border flex items-center justify-between">
-                      <span className="text-xs font-medium text-foreground">Notes</span>
-                      <Button
-                        onClick={() => setShowNotes(false)}
-                        variant="ghost"
-                        size="sm"
-                        className="h-6 w-6 p-0 hover:bg-muted/50"
-                        title="Close Notes"
-                      >
-                        ×
-                      </Button>
-                    </div>
-                    <textarea
-                      value={notes}
-                      onChange={(e) => setNotes(e.target.value)}
-                      placeholder="Write your notes here..."
-                      className="h-[calc(100%-32px)] w-full resize-none bg-card border-none p-4 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-none"
-                    />
-                  </div>
-                )}
                 {/* Timer Panel */}
                 {showTimer && (
                   <div className="border-t border-border" style={{ height: '150px' }}>
@@ -750,15 +718,6 @@ disp(C);`,
                   <Clock className="h-4 w-4" />
                 </Button>
                 <Button
-                  onClick={() => setShowNotes(!showNotes)}
-                  variant="ghost"
-                  size="sm"
-                  className="h-8 w-8 p-0 hover:bg-muted/50"
-                  title="Notes"
-                >
-                  <FileText className="h-4 w-4" />
-                </Button>
-                <Button
                   onClick={handleFullscreen}
                   variant="ghost"
                   size="sm"
@@ -772,29 +731,6 @@ disp(C);`,
             <div className="flex-1 overflow-hidden">
               <CodeEditor value={code} onChange={handleCodeChange} language={language} />
             </div>
-            {/* Notes Panel */}
-            {showNotes && (
-              <div className="border-t border-border" style={{ height: '200px' }}>
-                <div className="px-4 py-2 bg-muted border-b border-border flex items-center justify-between">
-                  <span className="text-xs font-medium text-foreground">Notes</span>
-                  <Button
-                    onClick={() => setShowNotes(false)}
-                    variant="ghost"
-                    size="sm"
-                    className="h-6 w-6 p-0 hover:bg-muted/50"
-                    title="Close Notes"
-                  >
-                    ×
-                  </Button>
-                </div>
-                <textarea
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  placeholder="Write your notes here..."
-                  className="h-[calc(100%-32px)] w-full resize-none bg-card border-none p-4 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-none"
-                />
-              </div>
-            )}
             {/* Timer Panel */}
             {showTimer && (
               <div className="border-t border-border" style={{ height: '150px' }}>
