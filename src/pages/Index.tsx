@@ -386,8 +386,6 @@ disp(C);`,
             <Code2 className="h-6 w-6 text-primary" />
             <h1 className="text-lg font-bold text-foreground">CodeVis</h1>
           </div>
-          <div className="h-6 w-px bg-border" />
-          <LanguageSelector value={language} onChange={handleLanguageChange} />
         </div>
         <div className="flex-1 flex justify-center gap-2">
           <Button
@@ -482,7 +480,7 @@ disp(C);`,
               {/* Code Editor */}
               <div className="flex flex-col border-l border-border flex-1 overflow-hidden">
                 <div className="px-4 py-2 bg-card border-b border-border flex items-center justify-between">
-                  <span className="text-xs font-medium text-muted-foreground">{language.charAt(0).toUpperCase() + language.slice(1)}</span>
+                  <LanguageSelector value={language} onChange={handleLanguageChange} />
                   <div className="flex items-center gap-2">
                     <Button
                       onClick={resetCode}
@@ -572,7 +570,7 @@ disp(C);`,
           {/* Code Editor */}
           <div className={`flex flex-col ${isFullscreen ? '' : 'border-r border-border'}`}>
             <div className="px-4 py-2 bg-card border-b border-border flex items-center justify-between">
-              <span className="text-xs font-medium text-muted-foreground">{language.charAt(0).toUpperCase() + language.slice(1)}</span>
+              <LanguageSelector value={language} onChange={handleLanguageChange} />
               <div className="flex items-center gap-2">
                 <Button
                   onClick={resetCode}
