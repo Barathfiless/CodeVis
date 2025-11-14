@@ -380,26 +380,24 @@ disp(C);`,
     <div className={`flex flex-col h-screen bg-background ${isFullscreen ? 'pt-0' : ''}`}>
       {/* Header */}
       {!isFullscreen && (
-        <header className="flex items-center px-6 py-3 bg-card border-b border-border shadow-sm">
-        <div className="flex items-center gap-3">
+        <header className="flex items-center justify-center px-6 py-3 bg-card border-b border-border shadow-sm relative">
+        <div className="absolute left-6 flex items-center gap-3">
           <div className="flex items-center gap-2">
             <Code2 className="h-6 w-6 text-primary" />
             <h1 className="text-lg font-bold text-foreground">CodeVis</h1>
           </div>
         </div>
-        <div className="flex-1 flex justify-center gap-2">
-          <Button
-            onClick={runCode}
-            disabled={isRunning || !code.trim()}
-            variant="ghost"
-            size="sm"
-            className="p-0 hover:bg-transparent"
-            title={isRunning ? "Stop Running" : "Run Code"}
-          >
-            <Play className="h-20 w-20 text-green-700 fill-green-700" />
-          </Button>
-        </div>
-        <div className="flex items-center gap-2">
+        <Button
+          onClick={runCode}
+          disabled={isRunning || !code.trim()}
+          variant="ghost"
+          size="sm"
+          className="p-0 hover:bg-transparent"
+          title={isRunning ? "Stop Running" : "Run Code"}
+        >
+          <Play className="h-20 w-20 text-green-700 fill-green-700" />
+        </Button>
+        <div className="absolute right-6 flex items-center gap-2">
           <DailyPracticeCounter />
           <ShareCode code={code} language={language} />
           <Button
