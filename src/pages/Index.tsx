@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CodeEditor } from "@/components/CodeEditor";
 import { LanguageSelector } from "@/components/LanguageSelector";
 import { OutputPanel } from "@/components/OutputPanel";
@@ -9,7 +9,7 @@ import { MySQLTableViewer } from "@/components/MySQLTableViewer";
 import { ShareCode } from "@/components/ShareCode";
 import { Shuffle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Play, Code2, RotateCcw, Maximize2, Minimize2, User, FileText } from "lucide-react";
+import { Play, Code2, RotateCcw, Maximize2, Minimize2, User, FileText, Clock, Play as PlayIcon, Square } from "lucide-react";
 
 import { toast } from "sonner";
 
@@ -122,9 +122,53 @@ disp(C);`,
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [notes, setNotes] = useState("");
   const [showNotes, setShowNotes] = useState(false);
+  const [showTimer, setShowTimer] = useState(false);
+  const [timerSeconds, setTimerSeconds] = useState(0);
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const [timerInput, setTimerInput] = useState("5");
 
   const handleBackFromDescription = () => {
     setSelectedQuestion(null);
+  };
+
+  // Timer effect
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isTimerRunning && timerSeconds > 0) {
+      interval = setInterval(() => {
+        setTimerSeconds((prev) => {
+          if (prev <= 1) {
+            setIsTimerRunning(false);
+            toast.success("Time's up!");
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isTimerRunning, timerSeconds]);
+
+  const startTimer = () => {
+    const minutes = parseInt(timerInput) || 5;
+    setTimerSeconds(minutes * 60);
+    setIsTimerRunning(true);
+  };
+
+  const stopTimer = () => {
+    setIsTimerRunning(false);
+  };
+
+  const resetTimer = () => {
+    setIsTimerRunning(false);
+    setTimerSeconds(0);
+    setTimerInput("5");
+  };
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
   const handleConsoleMouseDown = () => {
@@ -494,6 +538,15 @@ disp(C);`,
                       <RotateCcw className="h-4 w-4" />
                     </Button>
                     <Button
+                      onClick={() => setShowTimer(!showTimer)}
+                      variant="ghost"
+                      size="sm"
+                      className="h-8 w-8 p-0 hover:bg-muted/50"
+                      title="Timer"
+                    >
+                      <Clock className="h-4 w-4" />
+                    </Button>
+                    <Button
                       onClick={() => setShowNotes(!showNotes)}
                       variant="ghost"
                       size="sm"
@@ -537,6 +590,68 @@ disp(C);`,
                       placeholder="Write your notes here..."
                       className="flex-1 resize-none bg-card border-none p-4 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-none"
                     />
+                  </div>
+                )}
+                {/* Timer Panel */}
+                {showTimer && (
+                  <div className="flex flex-col border-t border-border" style={{ height: '150px' }}>
+                    <div className="px-4 py-2 bg-muted border-b border-border flex items-center justify-between">
+                      <span className="text-xs font-medium text-foreground">Timer</span>
+                      <Button
+                        onClick={() => setShowTimer(false)}
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 w-6 p-0 hover:bg-muted/50"
+                        title="Close Timer"
+                      >
+                        ×
+                      </Button>
+                    </div>
+                    <div className="flex-1 flex flex-col items-center justify-center gap-4 p-4">
+                      <div className="text-4xl font-bold text-primary font-mono">{formatTime(timerSeconds)}</div>
+                      <div className="flex items-center gap-2">
+                        {!isTimerRunning ? (
+                          <>
+                            <input
+                              type="number"
+                              value={timerInput}
+                              onChange={(e) => setTimerInput(e.target.value)}
+                              disabled={isTimerRunning}
+                              placeholder="Minutes"
+                              className="w-16 px-2 py-1 text-xs bg-card border border-border rounded text-foreground text-center focus:outline-none focus:ring-2 focus:ring-primary"
+                            />
+                            <span className="text-xs text-muted-foreground">min</span>
+                            <Button
+                              onClick={startTimer}
+                              variant="ghost"
+                              size="sm"
+                              className="ml-2 px-3 py-1 bg-green-700/20 hover:bg-green-700/30 text-green-600 text-xs rounded"
+                            >
+                              <PlayIcon className="h-3 w-3 mr-1" />
+                              Start
+                            </Button>
+                          </>
+                        ) : (
+                          <Button
+                            onClick={stopTimer}
+                            variant="ghost"
+                            size="sm"
+                            className="px-3 py-1 bg-red-700/20 hover:bg-red-700/30 text-red-600 text-xs rounded"
+                          >
+                            <Square className="h-3 w-3 mr-1" />
+                            Stop
+                          </Button>
+                        )}
+                        <Button
+                          onClick={resetTimer}
+                          variant="ghost"
+                          size="sm"
+                          className="px-3 py-1 bg-muted hover:bg-muted/80 text-muted-foreground text-xs rounded"
+                        >
+                          Reset
+                        </Button>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
@@ -616,6 +731,15 @@ disp(C);`,
                   <RotateCcw className="h-4 w-4" />
                 </Button>
                 <Button
+                  onClick={() => setShowTimer(!showTimer)}
+                  variant="ghost"
+                  size="sm"
+                  className="h-8 w-8 p-0 hover:bg-muted/50"
+                  title="Timer"
+                >
+                  <Clock className="h-4 w-4" />
+                </Button>
+                <Button
                   onClick={() => setShowNotes(!showNotes)}
                   variant="ghost"
                   size="sm"
@@ -659,6 +783,68 @@ disp(C);`,
                   placeholder="Write your notes here..."
                   className="flex-1 resize-none bg-card border-none p-4 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-none"
                 />
+              </div>
+            )}
+            {/* Timer Panel */}
+            {showTimer && (
+              <div className="flex flex-col border-t border-border" style={{ height: '150px' }}>
+                <div className="px-4 py-2 bg-muted border-b border-border flex items-center justify-between">
+                  <span className="text-xs font-medium text-foreground">Timer</span>
+                  <Button
+                    onClick={() => setShowTimer(false)}
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 w-6 p-0 hover:bg-muted/50"
+                    title="Close Timer"
+                  >
+                    ×
+                  </Button>
+                </div>
+                <div className="flex-1 flex flex-col items-center justify-center gap-4 p-4">
+                  <div className="text-4xl font-bold text-primary font-mono">{formatTime(timerSeconds)}</div>
+                  <div className="flex items-center gap-2">
+                    {!isTimerRunning ? (
+                      <>
+                        <input
+                          type="number"
+                          value={timerInput}
+                          onChange={(e) => setTimerInput(e.target.value)}
+                          disabled={isTimerRunning}
+                          placeholder="Minutes"
+                          className="w-16 px-2 py-1 text-xs bg-card border border-border rounded text-foreground text-center focus:outline-none focus:ring-2 focus:ring-primary"
+                        />
+                        <span className="text-xs text-muted-foreground">min</span>
+                        <Button
+                          onClick={startTimer}
+                          variant="ghost"
+                          size="sm"
+                          className="ml-2 px-3 py-1 bg-green-700/20 hover:bg-green-700/30 text-green-600 text-xs rounded"
+                        >
+                          <PlayIcon className="h-3 w-3 mr-1" />
+                          Start
+                        </Button>
+                      </>
+                    ) : (
+                      <Button
+                        onClick={stopTimer}
+                        variant="ghost"
+                        size="sm"
+                        className="px-3 py-1 bg-red-700/20 hover:bg-red-700/30 text-red-600 text-xs rounded"
+                      >
+                        <Square className="h-3 w-3 mr-1" />
+                        Stop
+                      </Button>
+                    )}
+                    <Button
+                      onClick={resetTimer}
+                      variant="ghost"
+                      size="sm"
+                      className="px-3 py-1 bg-muted hover:bg-muted/80 text-muted-foreground text-xs rounded"
+                    >
+                      Reset
+                    </Button>
+                  </div>
+                </div>
               </div>
             )}
           </div>
