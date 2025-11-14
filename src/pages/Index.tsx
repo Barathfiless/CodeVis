@@ -360,9 +360,10 @@ disp(C);`,
   };
 
   return (
-    <div className="flex flex-col h-screen bg-background">
+    <div className={`flex flex-col h-screen bg-background ${isFullscreen ? 'pt-0' : ''}`}>
       {/* Header */}
-      <header className="flex items-center px-6 py-3 bg-card border-b border-border shadow-sm">
+      {!isFullscreen && (
+        <header className="flex items-center px-6 py-3 bg-card border-b border-border shadow-sm">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
             <Code2 className="h-6 w-6 text-primary" />
@@ -407,6 +408,7 @@ disp(C);`,
           </Button>
         </div>
       </header>
+      )}
 
       {/* Main Content */}
       {showRandomQuestions ? (
