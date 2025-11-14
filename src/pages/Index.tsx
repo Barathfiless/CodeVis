@@ -119,6 +119,7 @@ disp(C);`,
   const [selectedQuestion, setSelectedQuestion] = useState<any>(null);
   const [consoleHeight, setConsoleHeight] = useState(250);
   const [isDraggingConsole, setIsDraggingConsole] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const handleBackFromDescription = () => {
     setSelectedQuestion(null);
@@ -473,6 +474,15 @@ disp(C);`,
                     >
                       <RotateCcw className="h-4 w-4" />
                     </Button>
+                    <Button
+                      onClick={() => setIsFullscreen(!isFullscreen)}
+                      variant="ghost"
+                      size="sm"
+                      className="h-8 w-8 p-0 hover:bg-muted/50"
+                      title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+                    >
+                      {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+                    </Button>
                   </div>
                 </div>
                 <div className="flex-1 overflow-hidden">
@@ -553,6 +563,15 @@ disp(C);`,
                   title="Reset Code"
                 >
                   <RotateCcw className="h-4 w-4" />
+                </Button>
+                <Button
+                  onClick={() => setIsFullscreen(!isFullscreen)}
+                  variant="ghost"
+                  size="sm"
+                  className="h-8 w-8 p-0 hover:bg-muted/50"
+                  title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+                >
+                  {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
                 </Button>
               </div>
             </div>
