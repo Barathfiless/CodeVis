@@ -199,6 +199,23 @@ disp(C);`,
     setError(null);
   };
 
+  const handleFullscreen = async () => {
+    if (!isFullscreen) {
+      // Enter fullscreen
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      }
+      setIsFullscreen(true);
+    } else {
+      // Exit fullscreen
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
+      setIsFullscreen(false);
+    }
+  };
+
   const handleSelectQuestion = (question: any) => {
     setSelectedQuestion(question);
     setLanguage(question.language.toLowerCase());
@@ -477,7 +494,7 @@ disp(C);`,
                       <RotateCcw className="h-4 w-4" />
                     </Button>
                     <Button
-                      onClick={() => setIsFullscreen(!isFullscreen)}
+                      onClick={handleFullscreen}
                       variant="ghost"
                       size="sm"
                       className="h-8 w-8 p-0 hover:bg-muted/50"
@@ -567,7 +584,7 @@ disp(C);`,
                   <RotateCcw className="h-4 w-4" />
                 </Button>
                 <Button
-                  onClick={() => setIsFullscreen(!isFullscreen)}
+                  onClick={handleFullscreen}
                   variant="ghost"
                   size="sm"
                   className="h-8 w-8 p-0 hover:bg-muted/50"
