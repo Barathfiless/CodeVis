@@ -394,10 +394,10 @@ disp(C);`,
             onClick={() => setShowRandomQuestions(!showRandomQuestions)}
             variant="ghost"
             size="sm"
-            className="group gap-2 px-3 h-8 rounded-full bg-gradient-to-br from-green-500/20 to-emerald-500/20 hover:bg-green-500 hover:text-black border border-green-500/30 hover:border-green-500 transition-all duration-200 flex items-center justify-center text-green-300 hover:shadow-lg dark:from-green-500/20 dark:to-emerald-500/20 dark:text-green-300 dark:border-green-500/30 light:from-green-500/40 light:to-emerald-500/40 light:bg-gradient-to-br light:text-green-700 light:border-green-500/50 light:hover:bg-green-600 light:hover:text-white light:hover:border-green-600"
+            className="group gap-2 px-3 h-8 rounded-full bg-gradient-to-br from-green-500/20 to-emerald-500/20 hover:bg-green-500 hover:text-black border border-green-500/30 hover:border-green-500 transition-all duration-200 flex items-center justify-center text-green-300 hover:shadow-lg dark:from-green-500/20 dark:to-emerald-500/20 dark:text-green-300 dark:border-green-500/30 light:from-green-600/60 light:to-emerald-600/60 light:bg-gradient-to-br light:text-white light:border-green-700/60 light:hover:bg-green-700 light:hover:text-white light:hover:border-green-800"
             title="Random Questions"
           >
-            <Shuffle className="h-4 w-4 text-green-400 group-hover:text-black dark:text-green-400 light:text-green-600 light:group-hover:text-white" />
+            <Shuffle className="h-4 w-4 text-green-400 group-hover:text-black dark:text-green-400 light:text-white light:group-hover:text-white" />
             <span className="text-xs font-medium">Random Questions</span>
           </Button>
           <ThemeToggle />
