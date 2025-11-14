@@ -90,6 +90,9 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      supports: {
+        light: "(prefers-color-scheme: light)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
