@@ -6,9 +6,10 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { RandomQuestions } from "@/components/RandomQuestions";
 import { DailyPracticeCounter } from "@/components/DailyPracticeCounter";
 import { MySQLTableViewer } from "@/components/MySQLTableViewer";
+import { ShareCode } from "@/components/ShareCode";
 import { Shuffle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Play, Code2, RotateCcw } from "lucide-react";
+import { Play, Code2, RotateCcw, Maximize2, Minimize2, User } from "lucide-react";
 
 import { toast } from "sonner";
 
@@ -360,7 +361,7 @@ disp(C);`,
   return (
     <div className="flex flex-col h-screen bg-background">
       {/* Header */}
-      <header className="flex items-center justify-between px-6 py-3 bg-card border-b border-border shadow-sm">
+      <header className="flex items-center px-6 py-3 bg-card border-b border-border shadow-sm">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
             <Code2 className="h-6 w-6 text-primary" />
@@ -369,36 +370,44 @@ disp(C);`,
           <div className="h-6 w-px bg-border" />
           <LanguageSelector value={language} onChange={handleLanguageChange} />
         </div>
-        <DailyPracticeCounter />
-        <div className="flex items-center gap-2">
-          <Button
-            onClick={() => setShowRandomQuestions(!showRandomQuestions)}
-            variant={showRandomQuestions ? "default" : "outline"}
-            size="sm"
-            className="gap-2 bg-blue-900/50 hover:bg-blue-950/60 text-white"
-          >
-            <Shuffle className="h-4 w-4" />
-            Random Questions
-          </Button>
-          <Button
-            onClick={resetCode}
-            variant="ghost"
-            size="sm"
-            className="gap-2 bg-red-500/50 hover:bg-red-600/60 text-white"
-          >
-            <RotateCcw className="h-4 w-4" />
-            Reset
-          </Button>
-          <ThemeToggle />
-          <div className="flex-1"></div>
+        <div className="flex-1 flex justify-center gap-2">
           <Button
             onClick={runCode}
             disabled={isRunning || !code.trim()}
-            className="gap-2 bg-success/50 hover:bg-success/60 text-white"
+            className={`gap-2 text-white font-medium transition-all duration-300 border ${
+              isRunning
+                ? 'bg-red-500/20 hover:bg-red-500/40 rounded-md border-red-500/40 hover:border-red-500/60 shadow-md hover:shadow-lg'
+                : output
+                ? 'bg-emerald-500/20 hover:bg-emerald-500/30 rounded-lg border-emerald-500/40 hover:border-emerald-500/60 shadow-md hover:shadow-lg px-3 h-8'
+                : 'bg-gray-500/20 hover:bg-gray-600/30 rounded-lg border-gray-500/40 hover:border-gray-600/60 shadow-md hover:shadow-lg px-3 h-8'
+            }`}
             size="sm"
+            title={isRunning ? "Stop Running" : "Run Code"}
           >
-            <Play className="h-4 w-4" />
-            Run
+            <Play className="h-3.5 w-3.5" />
+          </Button>
+        </div>
+        <div className="flex items-center gap-2">
+          <DailyPracticeCounter />
+          <ShareCode code={code} language={language} />
+          <Button
+            onClick={() => setShowRandomQuestions(!showRandomQuestions)}
+            variant="ghost"
+            size="sm"
+            className="gap-2 px-3 h-8 rounded-full bg-gradient-to-br from-indigo-500/20 to-blue-500/20 hover:from-indigo-500/30 hover:to-blue-500/30 border border-indigo-500/30 hover:border-indigo-500/50 transition-all duration-200 flex items-center justify-center text-indigo-300"
+            title="Random Questions"
+          >
+            <Shuffle className="h-4 w-4 text-indigo-400" />
+            <span className="text-xs font-medium">Questions</span>
+          </Button>
+          <ThemeToggle />
+          <Button
+            variant="ghost"
+            size="sm"
+            className="gap-2 text-foreground hover:bg-muted/50"
+            title="Profile"
+          >
+            <User className="h-4 w-4" />
           </Button>
         </div>
       </header>
