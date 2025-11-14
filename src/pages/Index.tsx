@@ -384,13 +384,7 @@ disp(C);`,
             size="sm"
             title={isRunning ? "Stop Running" : "Run Code"}
           >
-            {!isRunning && !output ? (
-              <span className="text-lg">|&gt;</span>
-            ) : isRunning ? (
-              <Play className="h-3.5 w-3.5" />
-            ) : (
-              <Play className="h-3.5 w-3.5" />
-            )}
+            <Play className="h-4 w-4" />
           </Button>
         </div>
         <div className="flex items-center gap-2">
