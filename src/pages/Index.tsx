@@ -549,9 +549,9 @@ disp(C);`,
           </div>
         </div>
       ) : (
-        <div className="flex-1 grid grid-cols-2 overflow-hidden">
+        <div className={`flex-1 grid overflow-hidden ${isFullscreen ? 'grid-cols-1' : 'grid-cols-2'}`}>
           {/* Code Editor */}
-          <div className="flex flex-col border-r border-border">
+          <div className={`flex flex-col ${isFullscreen ? '' : 'border-r border-border'}`}>
             <div className="px-4 py-2 bg-card border-b border-border flex items-center justify-between">
               <span className="text-xs font-medium text-muted-foreground">{language.charAt(0).toUpperCase() + language.slice(1)}</span>
               <div className="flex items-center gap-2">
@@ -581,9 +581,11 @@ disp(C);`,
           </div>
 
           {/* Output Panel */}
-          <div className="flex flex-col overflow-hidden">
-            <OutputPanel output={output} isRunning={isRunning} error={error} userInput={userInput} onInputChange={setUserInput} language={language} />
-          </div>
+          {!isFullscreen && (
+            <div className="flex flex-col overflow-hidden">
+              <OutputPanel output={output} isRunning={isRunning} error={error} userInput={userInput} onInputChange={setUserInput} language={language} />
+            </div>
+          )}
         </div>
       )}
     </div>
