@@ -374,17 +374,12 @@ disp(C);`,
           <Button
             onClick={runCode}
             disabled={isRunning || !code.trim()}
-            className={`gap-2 text-white font-medium transition-all duration-300 border dark:text-white ${
-              isRunning
-                ? 'bg-red-500/20 hover:bg-red-500/40 rounded-md border-red-500/40 hover:border-red-500/60 shadow-md hover:shadow-lg dark:bg-red-500/20 dark:hover:bg-red-500/40 light:bg-red-500/40 light:hover:bg-red-500/60 light:border-red-500/60 light:hover:border-red-500/80 light:text-white'
-                : output
-                ? 'bg-green-500 hover:bg-green-700 rounded-lg border-green-600 hover:border-green-800 shadow-md hover:shadow-lg px-3 h-8 dark:bg-green-500 dark:hover:bg-green-700 light:bg-green-500 light:hover:bg-green-700 light:border-green-600 light:hover:border-green-800 light:text-white'
-                : 'bg-green-500 hover:bg-green-700 rounded-lg border-green-600 hover:border-green-800 shadow-md hover:shadow-lg px-3 h-8 dark:bg-green-500 dark:hover:bg-green-700 light:bg-green-500 light:hover:bg-green-700 light:border-green-600 light:hover:border-green-800 light:text-white'
-            }`}
+            variant="ghost"
             size="sm"
+            className="p-0 hover:bg-transparent"
             title={isRunning ? "Stop Running" : "Run Code"}
           >
-            <Play className="h-4 w-4 text-green-900" />
+            <Play className="h-5 w-5 text-green-900" />
           </Button>
         </div>
         <div className="flex items-center gap-2">
