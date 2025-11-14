@@ -528,6 +528,11 @@ disp(C);`,
                 <div className="px-4 py-2 bg-card border-b border-border flex items-center justify-between">
                   <LanguageSelector value={language} onChange={handleLanguageChange} />
                   <div className="flex items-center gap-2">
+                    {isTimerRunning && (
+                      <div className="text-sm font-bold text-orange-500 font-mono px-2 py-1 bg-orange-500/10 rounded border border-orange-500/30">
+                        ⏱ {formatTime(timerSeconds)}
+                      </div>
+                    )}
                     <Button
                       onClick={resetCode}
                       variant="ghost"
@@ -721,6 +726,11 @@ disp(C);`,
             <div className="px-4 py-2 bg-card border-b border-border flex items-center justify-between">
               <LanguageSelector value={language} onChange={handleLanguageChange} />
               <div className="flex items-center gap-2">
+                {isTimerRunning && (
+                  <div className="text-sm font-bold text-orange-500 font-mono px-2 py-1 bg-orange-500/10 rounded border border-orange-500/30">
+                    ⏱ {formatTime(timerSeconds)}
+                  </div>
+                )}
                 <Button
                   onClick={resetCode}
                   variant="ghost"
