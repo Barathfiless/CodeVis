@@ -9,7 +9,7 @@ import { MySQLTableViewer } from "@/components/MySQLTableViewer";
 import { ShareCode } from "@/components/ShareCode";
 import { Shuffle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Play, Code2, RotateCcw, Maximize2, Minimize2, User } from "lucide-react";
+import { Play, Code2, RotateCcw, Maximize2, Minimize2, User, FileText } from "lucide-react";
 
 import { toast } from "sonner";
 
@@ -120,6 +120,8 @@ disp(C);`,
   const [consoleHeight, setConsoleHeight] = useState(250);
   const [isDraggingConsole, setIsDraggingConsole] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [notes, setNotes] = useState("");
+  const [showNotes, setShowNotes] = useState(false);
 
   const handleBackFromDescription = () => {
     setSelectedQuestion(null);
@@ -492,6 +494,15 @@ disp(C);`,
                       <RotateCcw className="h-4 w-4" />
                     </Button>
                     <Button
+                      onClick={() => setShowNotes(!showNotes)}
+                      variant="ghost"
+                      size="sm"
+                      className="h-8 w-8 p-0 hover:bg-muted/50"
+                      title="Notes"
+                    >
+                      <FileText className="h-4 w-4" />
+                    </Button>
+                    <Button
                       onClick={handleFullscreen}
                       variant="ghost"
                       size="sm"
@@ -505,6 +516,29 @@ disp(C);`,
                 <div className="flex-1 overflow-hidden">
                   <CodeEditor value={code} onChange={handleCodeChange} language={language} />
                 </div>
+                {/* Notes Panel */}
+                {showNotes && (
+                  <div className="flex flex-col border-t border-border" style={{ height: '200px' }}>
+                    <div className="px-4 py-2 bg-muted border-b border-border flex items-center justify-between">
+                      <span className="text-xs font-medium text-foreground">Notes</span>
+                      <Button
+                        onClick={() => setShowNotes(false)}
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 w-6 p-0 hover:bg-muted/50"
+                        title="Close Notes"
+                      >
+                        ×
+                      </Button>
+                    </div>
+                    <textarea
+                      value={notes}
+                      onChange={(e) => setNotes(e.target.value)}
+                      placeholder="Write your notes here..."
+                      className="flex-1 resize-none bg-card border-none p-4 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-none"
+                    />
+                  </div>
+                )}
               </div>
               
               {/* Resizable Divider */}
@@ -582,6 +616,15 @@ disp(C);`,
                   <RotateCcw className="h-4 w-4" />
                 </Button>
                 <Button
+                  onClick={() => setShowNotes(!showNotes)}
+                  variant="ghost"
+                  size="sm"
+                  className="h-8 w-8 p-0 hover:bg-muted/50"
+                  title="Notes"
+                >
+                  <FileText className="h-4 w-4" />
+                </Button>
+                <Button
                   onClick={handleFullscreen}
                   variant="ghost"
                   size="sm"
@@ -595,6 +638,29 @@ disp(C);`,
             <div className="flex-1 overflow-hidden">
               <CodeEditor value={code} onChange={handleCodeChange} language={language} />
             </div>
+            {/* Notes Panel */}
+            {showNotes && (
+              <div className="flex flex-col border-t border-border" style={{ height: '200px' }}>
+                <div className="px-4 py-2 bg-muted border-b border-border flex items-center justify-between">
+                  <span className="text-xs font-medium text-foreground">Notes</span>
+                  <Button
+                    onClick={() => setShowNotes(false)}
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 w-6 p-0 hover:bg-muted/50"
+                    title="Close Notes"
+                  >
+                    ×
+                  </Button>
+                </div>
+                <textarea
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  placeholder="Write your notes here..."
+                  className="flex-1 resize-none bg-card border-none p-4 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-none"
+                />
+              </div>
+            )}
           </div>
 
           {/* Output Panel */}
