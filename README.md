@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 # CodeVis
->>>>>>> 5d725fbc95cba7264f8a67dc1a99053598ff3d34
 # CodeVis
 
 A modern, interactive code editor and SQL playground built with React, TypeScript, and Monaco Editor. CodeVis provides a powerful environment for learning, practicing, and executing code across multiple programming languages.
@@ -129,11 +127,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Author
 
-CodeVis - Made with ❤️
 
 =======
-# CodeVis
->>>>>>> 5d725fbc95cba7264f8a67dc1a99053598ff3d34
+
 =======
 Follow these steps:
 
@@ -174,4 +170,4 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
->>>>>>> a2ff08c2098cf1a31479b1b33cf42193e4770fb3
+
