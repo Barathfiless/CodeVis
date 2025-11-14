@@ -106,6 +106,14 @@ B = [5, 6; 7, 8];
 C = A * B;
 disp('Matrix multiplication:');
 disp(C);`,
+  objectivec: `#import <Foundation/Foundation.h>
+
+int main(int argc, char * argv[]) {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    NSLog(@"Hello, World!");
+    [pool drain];
+    return 0;
+}`,
 };
 
   const Index = () => {
@@ -173,12 +181,13 @@ disp(C);`,
       sql: "main.sql",
       assembly: "main.asm",
       matlab: "main.m",
+      objectivec: "main.m",
     };
     return extensions[lang] || "main.txt";
   };
 
   const shouldCompile = (lang: string): boolean => {
-    const compiledLanguages = ["java", "cpp", "c", "csharp", "go", "rust", "swift", "kotlin", "d", "fortran"];
+    const compiledLanguages = ["java", "cpp", "c", "csharp", "go", "rust", "swift", "kotlin", "d", "fortran", "objectivec"];
     return compiledLanguages.includes(lang);
   };
 
@@ -318,6 +327,7 @@ disp(C);`,
           d: { language: "d", version: "2.095.1" },
           assembly: { language: "nasm", version: "2.15.05" },
           matlab: { language: "octave", version: "7.3.0" },
+          objectivec: { language: "objective-c", version: "5.1.0" },
         };
 
         const pistonLanguage = languageMap[language];
