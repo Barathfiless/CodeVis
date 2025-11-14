@@ -175,7 +175,7 @@ int main(int argc, char * argv[]) {
   };
 
   const shouldCompile = (lang: string): boolean => {
-    const compiledLanguages = ["java", "cpp", "c", "csharp", "go", "rust", "swift", "kotlin", "d", "fortran", "objectivec"];
+    const compiledLanguages = ["java", "cpp", "c", "csharp", "go", "rust", "swift", "kotlin", "fortran", "objectivec"];
     return compiledLanguages.includes(lang);
   };
 
@@ -312,7 +312,6 @@ int main(int argc, char * argv[]) {
           fortran: { language: "fortran", version: "10.2.0" },
           erlang: { language: "erlang", version: "23.0.0" },
           clojure: { language: "clojure", version: "1.10.3" },
-          d: { language: "d", version: "2.104.0" },
           assembly: { language: "nasm", version: "2.15.05" },
           matlab: { language: "octave", version: "7.3.0" },
           objectivec: { language: "objective-c", version: "5.1.0" },
