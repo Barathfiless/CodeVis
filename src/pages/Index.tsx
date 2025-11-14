@@ -571,7 +571,7 @@ disp(C);`,
                 </div>
                 {/* Notes Panel */}
                 {showNotes && (
-                  <div className="flex flex-col border-t border-border" style={{ height: '200px' }}>
+                  <div className="border-t border-border" style={{ height: '200px' }}>
                     <div className="px-4 py-2 bg-muted border-b border-border flex items-center justify-between">
                       <span className="text-xs font-medium text-foreground">Notes</span>
                       <Button
@@ -588,13 +588,13 @@ disp(C);`,
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
                       placeholder="Write your notes here..."
-                      className="flex-1 resize-none bg-card border-none p-4 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-none"
+                      className="h-[calc(100%-32px)] w-full resize-none bg-card border-none p-4 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-none"
                     />
                   </div>
                 )}
                 {/* Timer Panel */}
                 {showTimer && (
-                  <div className="flex flex-col border-t border-border" style={{ height: '150px' }}>
+                  <div className="border-t border-border" style={{ height: '150px' }}>
                     <div className="px-4 py-2 bg-muted border-b border-border flex items-center justify-between">
                       <span className="text-xs font-medium text-foreground">Timer</span>
                       <Button
@@ -607,7 +607,7 @@ disp(C);`,
                         ×
                       </Button>
                     </div>
-                    <div className="flex-1 flex flex-col items-center justify-center gap-4 p-4">
+                    <div className="flex flex-col items-center justify-center gap-4 p-4" style={{ height: 'calc(100% - 32px)' }}>
                       <div className="text-4xl font-bold text-primary font-mono">{formatTime(timerSeconds)}</div>
                       <div className="flex items-center gap-2">
                         {!isTimerRunning ? (
@@ -764,7 +764,7 @@ disp(C);`,
             </div>
             {/* Notes Panel */}
             {showNotes && (
-              <div className="flex flex-col border-t border-border" style={{ height: '200px' }}>
+              <div className="border-t border-border" style={{ height: '200px' }}>
                 <div className="px-4 py-2 bg-muted border-b border-border flex items-center justify-between">
                   <span className="text-xs font-medium text-foreground">Notes</span>
                   <Button
@@ -781,13 +781,13 @@ disp(C);`,
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder="Write your notes here..."
-                  className="flex-1 resize-none bg-card border-none p-4 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-none"
+                  className="h-[calc(100%-32px)] w-full resize-none bg-card border-none p-4 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary rounded-none"
                 />
               </div>
             )}
             {/* Timer Panel */}
             {showTimer && (
-              <div className="flex flex-col border-t border-border" style={{ height: '150px' }}>
+              <div className="border-t border-border" style={{ height: '150px' }}>
                 <div className="px-4 py-2 bg-muted border-b border-border flex items-center justify-between">
                   <span className="text-xs font-medium text-foreground">Timer</span>
                   <Button
@@ -800,7 +800,7 @@ disp(C);`,
                     ×
                   </Button>
                 </div>
-                <div className="flex-1 flex flex-col items-center justify-center gap-4 p-4">
+                <div className="flex flex-col items-center justify-center gap-4 p-4" style={{ height: 'calc(100% - 32px)' }}>
                   <div className="text-4xl font-bold text-primary font-mono">{formatTime(timerSeconds)}</div>
                   <div className="flex items-center gap-2">
                     {!isTimerRunning ? (
