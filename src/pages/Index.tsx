@@ -379,7 +379,7 @@ disp(C);`,
             className="p-0 hover:bg-transparent"
             title={isRunning ? "Stop Running" : "Run Code"}
           >
-            <Play className="h-6 w-6 text-green-700 fill-green-700" />
+            <Play className="h-20 w-20 text-green-700 fill-green-700" />
           </Button>
         </div>
         <div className="flex items-center gap-2">
@@ -461,9 +461,18 @@ disp(C);`,
             <div className="flex flex-col overflow-hidden" onMouseMove={handleConsoleMouseMove} onMouseUp={handleConsoleMouseUp} onMouseLeave={handleConsoleMouseUp}>
               {/* Code Editor */}
               <div className="flex flex-col border-l border-border flex-1 overflow-hidden">
-                <div className="px-4 py-2 bg-card border-b border-border">
+                <div className="px-4 py-2 bg-card border-b border-border flex items-center justify-between">
+                  <span className="text-xs font-medium text-muted-foreground">{language.charAt(0).toUpperCase() + language.slice(1)}</span>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-medium text-muted-foreground">{language.charAt(0).toUpperCase() + language.slice(1)}</span>
+                    <Button
+                      onClick={resetCode}
+                      variant="ghost"
+                      size="sm"
+                      className="h-8 w-8 p-0 hover:bg-muted/50"
+                      title="Reset Code"
+                    >
+                      <RotateCcw className="h-4 w-4" />
+                    </Button>
                   </div>
                 </div>
                 <div className="flex-1 overflow-hidden">
@@ -533,9 +542,18 @@ disp(C);`,
         <div className="flex-1 grid grid-cols-2 overflow-hidden">
           {/* Code Editor */}
           <div className="flex flex-col border-r border-border">
-            <div className="px-4 py-2 bg-card border-b border-border">
+            <div className="px-4 py-2 bg-card border-b border-border flex items-center justify-between">
+              <span className="text-xs font-medium text-muted-foreground">{language.charAt(0).toUpperCase() + language.slice(1)}</span>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-muted-foreground">{language.charAt(0).toUpperCase() + language.slice(1)}</span>
+                <Button
+                  onClick={resetCode}
+                  variant="ghost"
+                  size="sm"
+                  className="h-8 w-8 p-0 hover:bg-muted/50"
+                  title="Reset Code"
+                >
+                  <RotateCcw className="h-4 w-4" />
+                </Button>
               </div>
             </div>
             <div className="flex-1 overflow-hidden">
