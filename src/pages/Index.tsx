@@ -398,7 +398,7 @@ disp(C);`,
             title="Random Questions"
           >
             <Shuffle className="h-4 w-4 text-indigo-400" />
-            <span className="text-xs font-medium">Questions</span>
+            <span className="text-xs font-medium">Random Questions</span>
           </Button>
           <ThemeToggle />
           <Button
