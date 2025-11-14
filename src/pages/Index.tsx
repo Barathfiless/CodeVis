@@ -14,337 +14,68 @@ import { Play, Code2, RotateCcw, Maximize2, Minimize2, User } from "lucide-react
 import { toast } from "sonner";
 
 const defaultCode: Record<string, string> = {
-  python: `class Greeter:
-    def __init__(self, name):
-        self.name = name
-    
-    def greet(self):
-        return f"Hello, {self.name}!"
-
-greeter = Greeter("World")
-print(greeter.greet())`,
-  javascript: `class Greeter {
-    constructor(name) {
-        this.name = name;
-    }
-    
-    greet() {
-        return \`Hello, \${this.name}!\`;
-    }
-}
-
-const greeter = new Greeter("World");
-console.log(greeter.greet());`,
-  typescript: `class Greeter {
-    name: string;
-    
-    constructor(name: string) {
-        this.name = name;
-    }
-    
-    greet(): string {
-        return \`Hello, \${this.name}!\`;
-    }
-}
-
-const greeter = new Greeter("World");
-console.log(greeter.greet());`,
-  deno: `class Greeter {
-    constructor(public name: string) {}
-    
-    greet(): string {
-        return \`Hello, \${this.name}!\`;
-    }
-}
-
-const greeter = new Greeter("World");
-console.log(greeter.greet());`,
-  java: `class Greeter {
-    private String name;
-    
-    public Greeter(String name) {
-        this.name = name;
-    }
-    
-    public String greet() {
-        return "Hello, " + name + "!";
-    }
-    
+  python: 'print("Hello, World!")',
+  javascript: 'console.log("Hello, World!");',
+  typescript: 'console.log("Hello, World!");',
+  deno: 'console.log("Hello, World!");',
+  java: `public class Main {
     public static void main(String[] args) {
-        Greeter greeter = new Greeter("World");
-        System.out.println(greeter.greet());
+        System.out.println("Hello, World!");
     }
 }`,
   cpp: `#include <iostream>
-#include <string>
 using namespace std;
 
-class Greeter {
-private:
-    string name;
-public:
-    Greeter(string n) : name(n) {}
-    
-    string greet() {
-        return "Hello, " + name + "!";
-    }
-};
-
 int main() {
-    Greeter greeter("World");
-    cout << greeter.greet() << endl;
+    cout << "Hello, World!" << endl;
     return 0;
 }`,
   c: `#include <stdio.h>
 
-struct Greeter {
-    char name[50];
-};
-
-void greet(struct Greeter* g) {
-    printf("Hello, %s!\\n", g->name);
-}
-
 int main() {
-    struct Greeter greeter;
-    strcpy(greeter.name, "World");
-    greet(&greeter);
+    printf("Hello, World!\\n");
     return 0;
 }`,
   csharp: `using System;
 
-class Greeter {
-    private string name;
-    
-    public Greeter(string name) {
-        this.name = name;
-    }
-    
-    public string Greet() {
-        return \`Hello, \${name}!\`;
-    }
-    
+class Program {
     static void Main() {
-        Greeter greeter = new Greeter("World");
-        Console.WriteLine(greeter.Greet());
+        Console.WriteLine("Hello, World!");
     }
 }`,
   go: `package main
-
-import (
-    "fmt"
-)
-
-type Greeter struct {
-    Name string
-}
-
-func (g Greeter) Greet() string {
-    return "Hello, " + g.Name + "!"
-}
+import "fmt"
 
 func main() {
-    greeter := Greeter{Name: "World"}
-    fmt.Println(greeter.Greet())
+    fmt.Println("Hello, World!")
 }`,
-  rust: `struct Greeter {
-    name: String,
-}
-
-impl Greeter {
-    fn new(name: String) -> Self {
-        Greeter { name }
-    }
-    
-    fn greet(&self) -> String {
-        format!("Hello, {}!", self.name)
-    }
-}
-
-fn main() {
-    let greeter = Greeter::new("World".to_string());
-    println!("{}", greeter.greet());
+  rust: `fn main() {
+    println!("Hello, World!");
 }`,
-  swift: `class Greeter {
-    let name: String
-    
-    init(name: String) {
-        self.name = name
-    }
-    
-    func greet() -> String {
-        return "Hello, \(name)!"
-    }
-}
-
-let greeter = Greeter(name: "World")
-print(greeter.greet())`,
-  kotlin: `class Greeter(val name: String) {
-    fun greet(): String = "Hello, \$name!"
-}
-
-fun main() {
-    val greeter = Greeter("World")
-    println(greeter.greet())
+  swift: `print("Hello, World!")`,
+  kotlin: `fun main() {
+    println("Hello, World!")
 }`,
-  php: `<?php
-class Greeter {
-    private \$name;
-    
-    public function __construct(\$name) {
-        \$this->name = \$name;
-    }
-    
-    public function greet() {
-        return "Hello, " . \$this->name . "!";
-    }
-}
-
-\$greeter = new Greeter("World");
-echo \$greeter->greet();`,
-  ruby: `class Greeter
-    def initialize(name)
-        @name = name
-    end
-    
-    def greet
-        "Hello, #{@name}!"
-    end
-end
-
-greeter = Greeter.new("World")
-puts greeter.greet`,
-  perl: `package Greeter;
-sub new {
-    my (\$class, \$name) = @_;
-    return bless { name => \$name }, \$class;
-}
-sub greet {
-    my \$self = shift;
-    return "Hello, \$self->{name}!";
-}
-package main;
-my \$greeter = Greeter->new("World");
-print \$greeter->greet();`,
-  lua: `Greeter = {}
-function Greeter:new(name)
-    local obj = { name = name }
-    setmetatable(obj, self)
-    self.__index = self
-    return obj
-end
-function Greeter:greet()
-    return "Hello, " .. self.name .. "!"
-end
-local greeter = Greeter:new("World")
-print(greeter:greet())`,
-  bash: `#!/bin/bash
-
-greet() {
-    local name=\$1
-    echo "Hello, \$name!"
-}
-
-greet "World"`,
-  r: `Greeter <- R6Class("Greeter",
-  public = list(
-    name = NULL,
-    initialize = function(name) {
-      self\$name <- name
-    },
-    greet = function() {
-      paste("Hello,", self\$name, "!")
-    }
-  )
-)
-
-greeter <- Greeter\$new("World")
-print(greeter\$greet())`,
-  octave: `classdef Greeter
-    properties
-        name
-    end
-    methods
-        function obj = Greeter(name)
-            obj.name = name;
-        end
-        function msg = greet(obj)
-            msg = ['Hello, ' obj.name '!'];
-        end
-    end
-end
-
-greeter = Greeter('World');
-disp(greeter.greet())`,
-  fortran: `module greeter_mod
-  implicit none
-  type :: Greeter
-    character(len=50) :: name
-  end type Greeter
-contains
-  subroutine greet(this)
-    type(Greeter), intent(in) :: this
-    print *, 'Hello, ', trim(this%name), '!'
-  end subroutine greet
-end module
-
-program main
-  use greeter_mod
-  type(Greeter) :: greeter
-  greeter%name = 'World'
-  call greet(greeter)
-end program`,
-  erlang: `-module(greeter).
--export([new/1, greet/1]).
-
-new(Name) ->
-    {greeter, Name}.
-
-greet({greeter, Name}) ->
-    io:format("Hello, ~s!~n", [Name]).
-
-main() ->
-    Greeter = new("World"),
-    greet(Greeter).
-
--export([main/0]).
-:- initialization(main).`,
-  clojure: `(defprotocol IGreeter
-  (greet [this]))
-
-(defrecord Greeter [name]
-  IGreeter
-  (greet [this]
-    (str "Hello, " (:name this) "!")))
-
-(let [greeter (Greeter. "World")]
-  (println (greet greeter)))`,
+  php: '<?php\necho "Hello, World!\\n";',
+  ruby: 'puts "Hello, World!"',
+  perl: 'print "Hello, World!\\n";',
+  lua: 'print("Hello, World!")',
+  bash: 'echo "Hello, World!"',
+  r: 'print("Hello, World!")',
+  octave: 'disp("Hello, World!")',
+  fortran: `program hello
+    print *, "Hello, World!"
+end program hello`,
+  erlang: `-module(main).
+-export([start/0]).
+start() -> io:format("Hello, World!~n").`,
+  clojure: '(println "Hello, World!")',
   d: `import std.stdio;
 
-class Greeter {
-    string name;
-    
-    this(string name) {
-        this.name = name;
-    }
-    
-    string greet() {
-        return "Hello, " ~ name ~ "!";
-    }
-}
-
 void main() {
-    auto greeter = new Greeter("World");
-    writeln(greeter.greet());
+    writeln("Hello, World!");
 }`,
-  sql: `CREATE TABLE Greeter (
-    id INTEGER PRIMARY KEY,
-    name TEXT
-);
-
-INSERT INTO Greeter (id, name) VALUES (1, 'World');
-
-SELECT 'Hello, ' || name || '!' AS greeting FROM Greeter;`,
+  sql: 'SELECT "Hello, World!";',
   assembly: `section .data
     msg db "Hello, World!", 0x0a
     len equ $ - msg
@@ -362,22 +93,7 @@ _start:
     mov eax, 1
     xor ebx, ebx
     int 0x80`,
-  matlab: `classdef Greeter
-    properties
-        name
-    end
-    methods
-        function obj = Greeter(name)
-            obj.name = name;
-        end
-        function msg = greet(obj)
-            msg = sprintf('Hello, %s!', obj.name);
-        end
-    end
-end
-
-greeter = Greeter('World');
-disp(greeter.greet())`,
+  matlab: `disp('Hello, World!');`,
   objectivec: `#import <Foundation/Foundation.h>
 
 int main(int argc, char * argv[]) {
